@@ -28,7 +28,7 @@ export default function DisplayName(){
             <input type="text" onChange={handleFirstname} required></input><br></br>
             <label> Last Name:</label>
             <input type="text" onChange={handleLastname} required></input><br></br>
-            <button onClick={handleSubmit}> Submit</button>
+            <button type="submit" onClick={handleSubmit}> Submit</button>
             {submit ? <div>Full Name : {fullname}</div>:""}
         </form>
         </>
