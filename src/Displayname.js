@@ -1,36 +1,52 @@
 import { useState } from "react";
-export default function DisplayName(){
-    const [submit,setSubmit]=useState(false);
-    const [firstname,setFirstname] = useState("");
-    const [lastname,setLastname] = useState("");
-    const [fullname,setFullname] = useState("");
 
+export default function DisplayName() {
+  const [submit, setSubmit] = useState(false);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [fullname, setFullname] = useState("");
 
-    const handleFirstname =(e) =>{
-        setFirstname(e.target.value)
-    }
-    const handleLastname =(e) =>{
-        setLastname(e.target.value)
-    }
+  const handleFirstname = (e) => {
+    setFirstname(e.target.value);
+  };
 
-    const handleSubmit =(e) =>{
-        e.preventDefault();
-        console.log(e);
-        setFullname(`${firstname} ${lastname}`);
-        setSubmit(true)
-    }
+  const handleLastname = (e) => {
+    setLastname(e.target.value);
+  };
 
-    return (
-        <>
-        <form >
-            <h1>Full Name Display</h1>
-            <label> First Name:</label>
-            <input type="text" onChange={handleFirstname} required></input><br></br>
-            <label> Last Name:</label>
-            <input type="text" onChange={handleLastname} required></input><br></br>
-            <button type="submit" onClick={handleSubmit}> Submit</button>
-            {submit ? <div>Full Name: {fullname}</div>:""}
-        </form>
-        </>
-    )
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFullname(`${firstname} ${lastname}`);
+    setSubmit(true);
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <h1>Full Name Display</h1>
+        <label>
+          First Name:
+          <input
+            type="text"
+            value={firstname}
+            onChange={handleFirstname}
+            required
+          />
+        </label>
+        <br></br>
+        <label>
+          Last Name:
+          <input
+            type="text"
+            value={lastname}
+            onChange={handleLastname}
+            required
+          />
+        </label>
+        <br></br>
+        <button type="submit">Submit</button>
+      </form>
+      {submit && <div>Full Name: {fullname}</div>}
+    </>
+  );
 }
